@@ -17,11 +17,4 @@ node {
            
         }
     }
-      
-    stage('Push') { 
-        docker.withRegistry('https://rschainlab.jfrog.io','demorepo'){ 
-              img.push ()
-              img.push()
-        }   
-    }   
 }
