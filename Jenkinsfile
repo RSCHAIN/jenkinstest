@@ -7,11 +7,11 @@ node {
         }
         
  stage('build') {
-        docker.build("$IMAGE",  '.')
+        sh 'docker build("$IMAGE",  '.')'
         }
         
  stage ('Run') {
-         docker.withRun("--name run-$BUILD_ID -p 80:80") { c -> 
+         sh 'docker.withRun("--name run-$BUILD_ID -p 80:80") { c -> '
          sh 'curl localhost'
          }
       }
