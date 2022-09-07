@@ -1,20 +1,38 @@
-node {  
-    def registryProjet = 'https://rschainlab.jfrog.io/keassebojosias@gmail.com/demorepo/'
-    def IMAGE = "${registryProjet}:version-${env.BUILD_ID}"
+pipeline {
+    agent any
+    options {
+        skipStagesAfterUnstable()
+    }
+    stages {
+         stage('Clone repository') { 
+            steps { 
+                script{
+                checkout scm
+                }
+            }
+        }
 
- 
-    stage ('Clone') {
-         checkout scm
+        stage('Build') { 
+            steps { 
+                script{
+                 app = docker.build("underwater")
+                }
+            }
         }
-        
-    def img = stage('build') {
-            docker.build("$IMAGE",  '.')
+        stage('Test'){
+            steps {
+                 echo 'Empty'
+            }
         }
-        
-    stage ('Run') {
-        img.withRun("--name run-$BUILD_ID -p 80:80") { c -> 
-             sh 'curl localhost'
-           
+        stage('Deploy') {
+            steps {
+                script{
+                        docker.withRegistry("https://rschainlab.jfrog.io/", 'demorepo') {
+                    app.push("${env.BUILD_NUMBER}")
+                    app.push("latest")
+                    }
+                }
+            }
         }
     }
 }
