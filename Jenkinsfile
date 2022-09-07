@@ -5,8 +5,7 @@ pipeline{
        
     }
     stages{
-        def registryProjet = 'https://rschainlab.jfrog.io/artifactory/demorepo/'
-        def IMAGE = "${registryProjet}:version-${env.BUILD_ID}"
+       
         stage("clone"){
             
             steps{
@@ -29,7 +28,7 @@ pipeline{
             
             steps{
                 echo "========executing clone========"
-                sh 'docker build("$IMAGE",  '.')'
+                sh 'docker build .'
             }
             post{
                 always{
