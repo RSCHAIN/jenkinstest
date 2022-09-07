@@ -22,6 +22,5 @@ node {
               docker.push()
               }
               
-           }
-           
-       }
+           }   
+}
