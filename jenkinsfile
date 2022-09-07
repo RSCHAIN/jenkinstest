@@ -20,7 +20,7 @@ node {
          docker.withRegistry('https://rschainlab.jfrog.io','demorepo') {
               docker.push 'latest'
               docker.push()
-              }
-              
+              }    
         }   
 
+                         }   
