@@ -1,6 +1,6 @@
 node {
- def registryProjet = ''
- def IMAGE = ""
+ def registryProjet = 'https://rschainlab.jfrog.io/artifactory/demorepo/'
+ def IMAGE = "${registryProjet}:version-${env.BUILD_ID}"
  
  stage ('clone') {
         checkout scm 
@@ -17,7 +17,7 @@ node {
       }
       
   stage('Push') { 
-         docker.withRegistry('','') {
+         docker.withRegistry('https://rschainlab.jfrog.io','demorepo') {
               img.push 'latest'
               img.push()
               }
