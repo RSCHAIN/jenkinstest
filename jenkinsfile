@@ -3,7 +3,7 @@ node {
  def IMAGE = "${registryProjet}:version-${env.BUILD_ID}"
  
  stage ('clone') {
-        checkout scm 
+        checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/RSCHAIN/jenkinstest.git']]])
         }
         
  def img = stage('build') {
