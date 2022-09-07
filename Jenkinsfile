@@ -2,6 +2,8 @@ pipeline{
     
     agent{
         label "node"
+        def registryProjet = 'https://rschainlab.jfrog.io/artifactory/demorepo/'
+        def IMAGE = "${registryProjet}:version-${env.BUILD_ID}"
     }
     stages{
         stage("clone"){
