@@ -9,35 +9,15 @@ pipeline{
                 echo "========executing clone========"
                 sh 'checkout scm'
             }
-            post{
-                always{
-                    echo "========top========"
-                }
-                success{
-                    echo "======== wahou lomb12========"
-                }
-                failure{
-                    echo "======== run again========"
-                }
-            }
+         
         }
          stage("build"){
             
             steps{
                 echo "========executing clone========"
-                sh 'docker build .'
+                sh 'docker build -t my-docker-image .'
             }
-            post{
-                always{
-                    echo "========top========"
-                }
-                success{
-                    echo "======== wahou lomb12========"
-                }
-                failure{
-                    echo "======== run again========"
-                }
-            }
+        
         }
     }
    
