@@ -1,5 +1,5 @@
 node {  
-    def registryProjet = 'https://rschainlab.jfrog.io/artifactory/demorepo/'
+    def registryProjet = 'https://rschainlab.jfrog.io/keassebojosias@gmail.com/demorepo/'
     def IMAGE = "${registryProjet}:version-${env.BUILD_ID}"
 
  
